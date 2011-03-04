@@ -325,7 +325,7 @@ printf("spi %x, octet %x, bit %x\n",spi,octet,bit);
    bit = sci - 8*octet +1;
    printf("sci %x, octet %x, bit %x\n",sci,octet,bit);
    if(is_bit_H(si3[octet],bit)){
-   
+   }
 
         if(is_bit_H(sel->present,4)){
 	   print_bits(*sel); 
