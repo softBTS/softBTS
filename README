@@ -1,0 +1,6 @@
+git clone git@github.com:softBTS/softBTS.git
+cd softBTS
+autoreconf -i
+./configure
+make
+
