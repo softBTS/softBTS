@@ -102,24 +102,24 @@ static u_int8_t id_resp[] = {0, 12, PROTO_SOFTBTS, MSG_ID_RESP,
                               };
 
 
-//static u_int8_t init_rsl_link[] = {0, 25, 0xff,
-//                                    ABIS_OM_MDISC_MANUF,    /* discriminator            */
-//                                    ABIS_OM_PLACEMENT_ONLY, /* placement                */
-//                                    0x00,                   /* secuence                 */
-///* length deri ne fund te msg */    8,                      /* length                  */
-///* http://openbsc.gnumonks.org/trac/wiki/nanoBTS */     
-//                                    12,                      /* length of com.  string  */ 
-//                                    'c','o','m','.','i','p','a','c','c','e','s','s',
-//                                    NM_MT_SOFTBTS_RSL_CONNECT_ACK,
-//                                    NM_OC_BASEB_TRANSC,
-//                                    0x00,
-//                                    0x00,
-//                                    NM_OC_NULL, 
-//                                        NM_ATT_SOFTBTS_DST_IP_PORT,
-//                                        0x0B,
-//                                        0xBB,
- //                                   };
-
+static u_int8_t init_rsl_link[] = {0, 25, 0xff,
+                                    ABIS_OM_MDISC_MANUF,    /* discriminator            */
+                                    ABIS_OM_PLACEMENT_ONLY, /* placement                */
+                                    0x00,                   /* secuence                 */
+/* length deri ne fund te msg */    8,                      /* length                  */
+/* http://openbsc.gnumonks.org/trac/wiki/nanoBTS */     
+                                    12,                      /* length of com.  string  */ 
+                                    'c','o','m','.','i','p','a','c','c','e','s','s',
+                                    NM_MT_SOFTBTS_RSL_CONNECT_ACK,
+                                    NM_OC_BASEB_TRANSC,
+                                    0x00,
+                                    0x00,
+                                    NM_OC_NULL, 
+                                        NM_ATT_SOFTBTS_DST_IP_PORT,
+                                        0x0B,
+                                        0xBB,
+                                   };
+#if 0
 static u_int8_t init_rsl_link[] = {0, 32, 0xff,
                                     ABIS_OM_MDISC_MANUF,    /* discriminator            */
                                     ABIS_OM_PLACEMENT_ONLY, /* placement                */
@@ -145,7 +145,7 @@ static u_int8_t init_rsl_link[] = {0, 32, 0xff,
 					0,
 					0x1a,
                                     };
-
+#endif
 
 int receive_msg( char *msg, int sd)
 {
