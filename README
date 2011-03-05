@@ -1,6 +1,37 @@
+SoftBTS is a open source software designed to present BTS using Abis over IP interface. 
+
+Goal is to create a learning and research tool for education in GSM System Engineering.
+
+SoftBTS  cooperate with openBSC using existing openBSC's Abis/IP interface used by the
+ipaccess product family. At this stage softBTS acting as virtual BTS.
+ 
+     
+Getting code:
+============
+        
 git clone git@github.com:softBTS/softBTS.git
+
 cd softBTS
 autoreconf -i
 ./configure
 make
+cd src
 
+
+Testing code:
+============
+
+Use openbsc.cfg.nanobts as openbsc.cfg and start openBSC with:
+
+./bsc_hack -d DINP:DNM:DRSL:DRR:DMM:DCC:DRLL:DMNCC:DSMS:DPAG,0:0:0
+
+softBTS start with:
+
+./softbts -a IP_of_BSC
+
+
+
+
+
+
+ 
