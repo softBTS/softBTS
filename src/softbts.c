@@ -75,17 +75,13 @@ socket_connection_t rsl = {
 //char   msg[BUFFER_LENGTH], *pmsg = &msg[0];
 
 u_int8_t channel;
-char server[40];
+char bsc[40];
 
 
 
 int main(int argc, char** argv)
 
 {
-/***********************************************************************/
-/* Variable and structure definitions.                                 */
-/***********************************************************************/
-
 
 	tall_bts_ctx = talloc_named_const(NULL, 1, "softBTS");
 
@@ -132,11 +128,11 @@ static int handle_options(int argc, char** argv)
          };
 
 
-	if (argc ==1) {
+	if (argc == 1) {
         fprintf(stderr, 
-        "This program needs arguments.\n \
-         \tYou have to specify the IP address.\n \
-	 \tUse -h  for more information\n");
+        "This program needs arguments. " \
+        "You have to specify the IP address of BSC.\n" \
+	"Use -h  for more information\n");
         exit(EXIT_SUCCESS);
         }
 	for(;;){
@@ -157,22 +153,20 @@ static int handle_options(int argc, char** argv)
                         strcpy(cfg,optarg);
                         break;
 		case 'a':
-			strcpy(server,optarg);
-			break;
+			strcpy(bsc,optarg);
+                        break;
                 case 'V':
                         print_version();
                         exit(EXIT_SUCCESS);
 		case 'v': /* verbose flag */
 			break;
 		default:
-			printf ("You specified a parameter I don't "
-					"know about.\n");
-			c =0 ;
+                        break; 
 	 	}
 	};
-	if(strlen(server) == 0){
-		printf("\n Please specify IP Address ........");
-		return print_help();
+	if(strlen(bsc) == 0){
+	  printf("\nPlease specify IP Address of BSC...\n");
+	  return print_help();
 	}
 	return 0;
 }
@@ -191,7 +185,7 @@ const char *license =
 
 static int print_help()
 {
-	printf("\n\n%s - %s \n\n", PACKAGE, VERSION);
+	printf("%s - %s\n", PACKAGE, VERSION);
 	printf("%s [-h] [-V] [-v] [-c FILE]  -a IP\n", PACKAGE); 
 	printf("Those are the optional arguments [] you can pass to BTS\n");
 	printf(" -h 	        print this help and exit\n");

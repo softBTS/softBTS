@@ -5,10 +5,10 @@
 #include <logger.h>
 
 
-extern char server[40];
+extern char bsc[40];
 int oml_connection(connection_t *socket, int flag);
 int rsl_connection(connection_t *socket, int flag);
-void socket_init( struct sockaddr_in *serveraddr, connection_t *sock, int port);
+void socket_init( struct sockaddr_in *bsc_addr, connection_t *sock, int port);
 
 socket_connection_t oml = {
         .socket.type = SOCKET_FD_READ,
@@ -25,7 +25,7 @@ socket_connection_t rsl = {
 char   msg[BUFFER_LENGTH], *pmsg = &msg[0];
 
 
-void socket_init( struct sockaddr_in *serveraddr, connection_t *sock, int port)
+void socket_init( struct sockaddr_in *bsc_addr, connection_t *sock, int port)
 {
 
 	int rc, on =1;
@@ -42,20 +42,20 @@ void socket_init( struct sockaddr_in *serveraddr, connection_t *sock, int port)
         setsockopt(sock->fd, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on));
 
 
-	memset(serveraddr, 0, sizeof(serveraddr));
-      	serveraddr->sin_family      = AF_INET;
-      	serveraddr->sin_port        = htons(port);
-     	serveraddr->sin_addr.s_addr = inet_addr(server);
+	memset(bsc_addr, 0, sizeof(bsc_addr));
+      	bsc_addr->sin_family      = AF_INET;
+      	bsc_addr->sin_port        = htons(port);
+     	bsc_addr->sin_addr.s_addr = inet_addr(bsc);
 
 
-      	rc = connect(sock->fd, (struct sockaddr *)serveraddr, len);
+      	rc = connect(sock->fd, (struct sockaddr *)bsc_addr, len);
       	if (rc < 0){
          logger(ERROR,LOCATION,"connect() failed, check is BSC runnimg in this network? \
          or wrong IP address of BSC \n");
          kill_background();
       	}
       	 else {
-	 logger(INFO,LOCATION,"connect() successful connection to new socket %d  link %s:%d\n",sock->fd, server, port);
+	 logger(INFO,LOCATION,"connect() successful connection to new socket %d  link %s:%d\n",sock->fd, bsc, port);
       	 }
 
     	rc = socket_register_fd(sock);
